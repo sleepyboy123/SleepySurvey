@@ -8,7 +8,7 @@ const Wait = () => {
     return(
         <div>
            Wait to Go
-           <button onClick={() => {history.push({pathname: "/experiment", data: {hoursAgo: location.data.hoursAgo, hungerLevel: location.data.hungerLevel}})}}>Next</button>
+           <button onClick={() => {history.push({pathname: "/experiment", data: {id: location.data.id, hoursAgo: location.data.hoursAgo, hungerLevel: location.data.hungerLevel}})}}>Next</button>
         </div>
     )
 }

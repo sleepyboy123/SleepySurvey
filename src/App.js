@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Route } from "react-router-dom";
 
+import PartID from './components/PartID/PartID';
 import Instruction from './components/Instruction/Instruction';
 import Start from './components/Start/Start';
 import Wait from './components/Wait/Wait';
@@ -11,7 +12,8 @@ import './App.css';
 function App() {
   return (
     <Router>
-      <Route path="/" exact component={Instruction} />
+      <Route path="/" exact component={PartID} />
+      <Route path="/instruction" exact component={Instruction} />
       <Route path="/start" exact component={Start} />
       <Route path="/Wait" exact component={Wait} />
       <Route path="/Experiment" exact component={Experiment} />
