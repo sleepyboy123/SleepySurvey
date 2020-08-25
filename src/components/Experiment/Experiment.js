@@ -28,11 +28,11 @@ const Experiment = () => {
     // Import all images from folder
     const images = importAll(require.context('../../images', false, /\.(png|jpe?g|svg)$/))
 
-    // var data = {
-    //     id: location.data.id,
-    //     hoursAgo: location.data.hoursAgo,
-    //     hungerLevel: location.data.hungerLevel
-    // }
+    var data = {
+        // id: location.data.id,
+        // hoursAgo: location.data.hoursAgo,
+        // hungerLevel: location.data.hungerLevel
+    }
 
     function choosingNo(e) {
         if (yesResults1.includes(e)) {
