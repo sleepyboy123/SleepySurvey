@@ -3,9 +3,13 @@ import { useLocation } from "react-router";
 import './Experiment.css';
 
 const Experiment = () => {
+    const time_limit = 5
     const location = useLocation();
-    const [timeLeft, setTimeLeft] = useState(5)
+    const [timeLeft, setTimeLeft] = useState(time_limit)
     const [counter, setCounter] = useState(0)
+    const [firstChoice, setFirstChoice] = useState()
+    const [secondChoice, setSecondChoice] = useState()
+    const [thirdChoice, setThirdChoice] = useState()
     // Effect to display countdown
     useEffect(() => {
         const countdown = setInterval (() => {
@@ -21,23 +25,58 @@ const Experiment = () => {
     }
     // Import all images from folder
     const images = importAll(require.context('../../images', false, /\.(png|jpe?g|svg)$/))
+
+    var data = {
+        hoursAgo: location.data.hoursAgo,
+        hungerLevel: location.data.hungerLevel
+    }
     
     return(
         <div>
             {
                 timeLeft > 0 ? 
                 <div> 
-                    {timeLeft} {location.data.hoursAgo} <img src={images[counter]}/>
+                    {timeLeft} <img src={images[counter]}/>
                 </div> : 
                 <div>
-                    How much do you think the person from the other group is willing to pay for this item? {(images[counter].split('/')[3]).split('.')[0]}
+                    {
+                        !firstChoice ? 
+                        <div>
+                            How much do you think the person from the other group is willing to pay for this item? {(images[counter].split('/')[3]).split('.')[0]}
+                            <br></br>
+                            1 2 3 4 5 6 7 8 9 10
+                            {/* Set firstChoice */}
+                        </div> :
+                        <div>
+                            {
+                                !secondChoice ? 
+                                <div>
+                                    How much do you think the person from the other group is willing to pay for this item? {(images[counter].split('/')[3]).split('.')[0]}
+                                    <br></br>
+                                    0.2 0.4 0.6 0.8 1
+                                    {/* Set secondChoice */}
+                                </div> :
+                                <div>
+                                    How much do you think the person from the other group is willing to pay for this item? {(images[counter].split('/')[3]).split('.')[0]}
+                                    <br></br>
+                                    0.00 0.05 0.10 0.15 0.20
+                                    {/* Set thirdChoice, add to Json */}
+                                </div>
+                            }
+                        </div>
+                    }
                 </div>
             }
-            <button onClick={() => {
+            {/* Needs fixing */}
+            {(counter + 1) < images.length ? <button onClick={() => {
                 if ((counter + 1) < images.length) {
+                    setTimeLeft(time_limit)
                     setCounter(counter + 1)
                 }
-            }}> Next </button>
+            }}> Next </button> : <button>Submit</button>}
+            
+            
+            
         </div>
     )
 }
