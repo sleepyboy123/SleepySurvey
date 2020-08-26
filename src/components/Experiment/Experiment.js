@@ -8,7 +8,7 @@ const Experiment = () => {
     const [timeLeft, setTimeLeft] = useState(time_limit)
     const [counter, setCounter] = useState(0)
     const [firstChoice, setFirstChoice] = useState()
-    const [yesResults1, setYesResults1] = useState([])
+    const [yesResults1, setYesResults1] = useState([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
     const [secondChoice, setSecondChoice] = useState()
     const [thirdChoice, setThirdChoice] = useState()
 
@@ -38,18 +38,14 @@ const Experiment = () => {
         // hungerLevel: location.data.hungerLevel
     }
 
-    // Add a no value when checking
-    // Remove a no value when checking
-    // When selecing a big no value, add subsequent no values
-
-    function choosingNoOne(e, i) {
+    function choosingNoOne(e, f) {
         var temp = e
         let newState = firstNo
         let yesState = firstYes
         // This code runs if the button was unchecked
         if (newState[e] === false) {
             // Loop through all values
-            for (var i = 0; i <= yesResults1.length + 1; i++) {
+            for (var i = 0; i <= 10 + 1; i++) {
                 // Remove all bigger yes values from the array when a no is chosen
                 if (yesResults1.includes(temp)) {
                     var index = yesResults1.indexOf(temp)
@@ -57,20 +53,35 @@ const Experiment = () => {
                 }
                 temp += 1
             }
+            // Remove no value from array when unchecking
+            var noindex = yesResults1.indexOf(i)
+            yesResults1.splice(noindex, 1)
             // Check selected no and all subsequent no's. Uncheck all corresponding yes
             for (var i = e; i < 11; i++) {
                 newState[i] = true
                 yesState[i] = false
             }
+            let tempi = f
+            let tempArray = yesResults1
+            for (var a = e; a <= 10; a++) {
+                // Check if no value is not in array
+                if (!yesResults1.includes(tempi)) {
+                    // Add all no values to yesResults1
+                    tempArray.push(tempi)
+                    tempi += 10
+                }
+            }
+            setYesResults1(tempArray)
         } else {
             // This code runs if the button was checked
             // Uncheck both yes and no
             newState[e] = false
             yesState[e] = false
+            var indexf = yesResults1.indexOf(f)
+            yesResults1.splice(indexf, 1)
         }
         setFirstNo(newState)
         setFirstYes(yesState)
-        console.log(yesResults1, firstYes, firstNo)
     }
 
     function choosingYesOne(e, i) {
@@ -100,7 +111,6 @@ const Experiment = () => {
             setFirstYes(yesState)
             setFirstNo(newState)
         }
-        console.log(yesResults1, firstYes, firstNo)
     }
     
     return(
@@ -136,10 +146,10 @@ const Experiment = () => {
                                     $1
                                 </div>
                                 <div className="col">
-                                    <input type="radio" onClick={() => {choosingYesOne(1, 0.001)}} checked={firstYes[1]} name="yes_no_1"></input>
+                                    <input type="radio" onClick={() => {choosingYesOne(1, 0.1)}} checked={firstYes[1]} name="yes_no_1"></input>
                                 </div>
                                 <div className="col">
-                                    <input type="radio" onClick={() => choosingNoOne(1, 0.001)} checked={firstNo[1]} name="yes_no_1"></input>
+                                    <input type="radio" onClick={() => choosingNoOne(1, 0.1)} checked={firstNo[1]} name="yes_no_1"></input>
                                 </div>
                             </div>
                             <div className="row">
@@ -147,10 +157,10 @@ const Experiment = () => {
                                     $2
                                 </div>
                                 <div className="col">
-                                    <input type="radio" onClick={() => {choosingYesOne(2, 0.002)}} checked={firstYes[2]} name="yes_no_2"></input>
+                                    <input type="radio" onClick={() => {choosingYesOne(2, 0.2)}} checked={firstYes[2]} name="yes_no_2"></input>
                                 </div>
                                 <div className="col">
-                                    <input type="radio" onClick={() => choosingNoOne(2, 0.002)} checked={firstNo[2]} name="yes_no_2"></input>
+                                    <input type="radio" onClick={() => choosingNoOne(2, 0.2)} checked={firstNo[2]} name="yes_no_2"></input>
                                 </div>
                             </div>
                             <div className="row">
@@ -158,10 +168,10 @@ const Experiment = () => {
                                     $3
                                 </div>
                                 <div className="col">
-                                    <input type="radio" onClick={() => choosingYesOne(3)} checked={firstYes[3]} name="yes_no_3"></input>
+                                    <input type="radio" onClick={() => choosingYesOne(3, 31)} checked={firstYes[3]} name="yes_no_3"></input>
                                 </div>
                                 <div className="col">
-                                    <input type="radio" onClick={() => choosingNoOne(3)} checked={firstNo[3]} name="yes_no_3"></input>
+                                    <input type="radio" onClick={() => choosingNoOne(3, 31)} checked={firstNo[3]} name="yes_no_3"></input>
                                 </div>
                             </div>
                             {/* Get the highest number from array and pass that on to next value */}
@@ -187,6 +197,7 @@ const Experiment = () => {
                 </div>
             }
             {/* Needs fixing */}
+            <button onClick={() => console.log(yesResults1, firstYes, firstNo)}>hello</button>
             {(counter + 1) < images.length ? <button onClick={() => {
                 if ((counter + 1) < images.length) {
                     setTimeLeft(time_limit)
