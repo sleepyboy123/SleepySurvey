@@ -38,7 +38,11 @@ const Experiment = () => {
         // hungerLevel: location.data.hungerLevel
     }
 
-    function choosingNoOne(e) {
+    // Add a no value when checking
+    // Remove a no value when checking
+    // When selecing a big no value, add subsequent no values
+
+    function choosingNoOne(e, i) {
         var temp = e
         let newState = firstNo
         let yesState = firstYes
@@ -69,7 +73,7 @@ const Experiment = () => {
         console.log(yesResults1, firstYes, firstNo)
     }
 
-    function choosingYesOne(e) {
+    function choosingYesOne(e, i) {
         // Check if previous no is checked. If it is checked, you can't select Yes
         if (firstNo[e - 1] === false) {
             // Value is not in the yes array so we need to add it in
@@ -132,10 +136,10 @@ const Experiment = () => {
                                     $1
                                 </div>
                                 <div className="col">
-                                    <input type="radio" onClick={() => {choosingYesOne(1)}} checked={firstYes[1]} name="yes_no_1"></input>
+                                    <input type="radio" onClick={() => {choosingYesOne(1, 0.001)}} checked={firstYes[1]} name="yes_no_1"></input>
                                 </div>
                                 <div className="col">
-                                    <input type="radio" onClick={() => choosingNoOne(1)} checked={firstNo[1]} name="yes_no_1"></input>
+                                    <input type="radio" onClick={() => choosingNoOne(1, 0.001)} checked={firstNo[1]} name="yes_no_1"></input>
                                 </div>
                             </div>
                             <div className="row">
@@ -143,10 +147,10 @@ const Experiment = () => {
                                     $2
                                 </div>
                                 <div className="col">
-                                    <input type="radio" onClick={() => {choosingYesOne(2)}} checked={firstYes[2]} name="yes_no_2"></input>
+                                    <input type="radio" onClick={() => {choosingYesOne(2, 0.002)}} checked={firstYes[2]} name="yes_no_2"></input>
                                 </div>
                                 <div className="col">
-                                    <input type="radio" onClick={() => choosingNoOne(2)} checked={firstNo[2]} name="yes_no_2"></input>
+                                    <input type="radio" onClick={() => choosingNoOne(2, 0.002)} checked={firstNo[2]} name="yes_no_2"></input>
                                 </div>
                             </div>
                             <div className="row">
