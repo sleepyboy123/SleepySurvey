@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useLocation } from "react-router";
+import { useLocation, useHistory } from "react-router";
 import './Experiment.css';
 
 let yesArray = [null, null, null, null, null, null, null, null, null, null, null]
@@ -7,11 +7,11 @@ let yesArray = [null, null, null, null, null, null, null, null, null, null, null
 const Experiment = () => {
     const time_limit = 5
     const location = useLocation();
+    const history = useHistory();
     const [timeLeft, setTimeLeft] = useState(time_limit)
     const [counter, setCounter] = useState(0)
     const [firstChoice, setFirstChoice] = useState()
     const [secondChoice, setSecondChoice] = useState()
-    const [thirdChoice, setThirdChoice] = useState()
 
     // Effect to display countdown
     useEffect(() => {
@@ -29,10 +29,13 @@ const Experiment = () => {
     // Import all images from folder
     const images = importAll(require.context('../../images', false, /\.(png|jpe?g|svg)$/))
 
-    var data = {
+    var results = {
         // id: location.data.id,
         // hoursAgo: location.data.hoursAgo,
         // hungerLevel: location.data.hungerLevel
+        finalBids: [
+
+        ]
     }
 
     function choosingNoOne(e) {
@@ -186,18 +189,17 @@ const Experiment = () => {
                 }
             }
             // Add first and second choice together, convert to float and add to JSON
-            data[(images[counter].split('/')[3]).split('.')[0]] = parseFloat((secondChoice + max).toFixed(2))
-            console.log(data)
+            results.finalBids[results.finalBids.length] = {[(images[counter].split('/')[3]).split('.')[0]]: parseFloat((secondChoice + max).toFixed(2))}
+            console.log(results)
             yesArray = [null, null, null, null, null, null, null, null, null, null, null]
             setFirstChoice(null)
             setSecondChoice(null)
-            setThirdChoice(null)
         }
         if ((counter + 1) < images.length) {
             setTimeLeft(time_limit)
             setCounter(counter + 1)
         } else {
-            console.log("The End")
+            history.push({pathname: '/end', results})
         }
     }
     
@@ -206,11 +208,11 @@ const Experiment = () => {
             {
                 timeLeft > 0 ? 
                 <div>
-                    The image below will be shown for 60 seconds. After which, you will automatically process to answer the questions. 
+                    The image below will be shown for 60 seconds. After which, you will automatically process to answer the questions.
+                    <br></br>
+                    {timeLeft}  
                     <br></br>
                     <img style={{height: 500, width: 500}} src={images[counter]}/>
-                    <br></br>
-                    {timeLeft} 
                 </div> : 
                 <div>
                     {
@@ -481,17 +483,6 @@ const Experiment = () => {
                     }
                 </div>
             }
-            {/* Needs fixing */}
-            <button onClick={() => console.log(yesArray)}>hello</button>
-            {(counter + 1) < images.length ? <button onClick={() => {
-                if ((counter + 1) < images.length) {
-                    setTimeLeft(time_limit)
-                    setCounter(counter + 1)
-                }
-            }}> Picture </button> : <button>Submit</button>}
-            
-            
-            
         </div>
     )
 }
