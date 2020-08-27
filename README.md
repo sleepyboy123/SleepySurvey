@@ -22,3 +22,5 @@ Do i need to go all the way up to $5?
 
 If second choice is .00 then third choice will be 30
 Second object is not being pushed into array 
+End.js not getting json data passed down...
+Copy the previous methods of sending data.... I am tired good night

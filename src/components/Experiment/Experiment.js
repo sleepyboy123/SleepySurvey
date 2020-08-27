@@ -30,12 +30,9 @@ const Experiment = () => {
     const images = importAll(require.context('../../images', false, /\.(png|jpe?g|svg)$/))
 
     var results = {
-        // id: location.data.id,
-        // hoursAgo: location.data.hoursAgo,
-        // hungerLevel: location.data.hungerLevel
-        finalBids: [
-
-        ]
+        id: location.data.id,
+        hoursAgo: location.data.hoursAgo,
+        hungerLevel: location.data.hungerLevel
     }
 
     function choosingNoOne(e) {
@@ -189,7 +186,8 @@ const Experiment = () => {
                 }
             }
             // Add first and second choice together, convert to float and add to JSON
-            results.finalBids[results.finalBids.length] = {[(images[counter].split('/')[3]).split('.')[0]]: parseFloat((secondChoice + max).toFixed(2))}
+            var name = (images[counter].split('/')[3]).split('.')[0]
+            results = {...results, [name]: parseFloat((secondChoice + max).toFixed(2))}
             console.log(results)
             yesArray = [null, null, null, null, null, null, null, null, null, null, null]
             setFirstChoice(null)
