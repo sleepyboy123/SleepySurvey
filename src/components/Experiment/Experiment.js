@@ -2,13 +2,15 @@ import React, { useState, useEffect } from 'react';
 import { useLocation } from "react-router";
 import './Experiment.css';
 
+let yesArray = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+
 const Experiment = () => {
     const time_limit = 5
     const location = useLocation();
     const [timeLeft, setTimeLeft] = useState(time_limit)
     const [counter, setCounter] = useState(0)
     const [firstChoice, setFirstChoice] = useState()
-    const [yesResults1, setYesResults1] = useState([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
+    const [yesResults1, setYesResults1] = useState()
     const [secondChoice, setSecondChoice] = useState()
     const [thirdChoice, setThirdChoice] = useState()
 
@@ -38,78 +40,57 @@ const Experiment = () => {
         // hungerLevel: location.data.hungerLevel
     }
 
-    function choosingNoOne(e, f) {
-        var temp = e
-        let newState = firstNo
+    function choosingNoOne(e) {
+        let noState = firstNo
         let yesState = firstYes
-        // This code runs if the button was unchecked
-        if (newState[e] === false) {
-            // Loop through all values
-            for (var i = 0; i <= 10 + 1; i++) {
-                // Remove all bigger yes values from the array when a no is chosen
-                if (yesResults1.includes(temp)) {
-                    var index = yesResults1.indexOf(temp)
-                    yesResults1.splice(index, 1)
-                }
-                temp += 1
+        // This code runs if you are checking the button
+        if (noState[e] === false) {
+            // Loop through all values after chosen one
+            for (var i = e; i <= 10; i++) {
+                // If it was in the yes array, remove it
+                yesArray[i] = 0
             }
-            // Remove no value from array when unchecking
-            var noindex = yesResults1.indexOf(i)
-            yesResults1.splice(noindex, 1)
             // Check selected no and all subsequent no's. Uncheck all corresponding yes
-            for (var i = e; i < 11; i++) {
-                newState[i] = true
+            for (var i = e; i <= 10; i++) {
+                noState[i] = true
                 yesState[i] = false
             }
-            let tempi = f
-            let tempArray = yesResults1
-            for (var a = e; a <= 10; a++) {
-                // Check if no value is not in array
-                if (!yesResults1.includes(tempi)) {
-                    // Add all no values to yesResults1
-                    tempArray.push(tempi)
-                    tempi += 10
-                }
-            }
-            setYesResults1(tempArray)
         } else {
-            // This code runs if the button was checked
+            // This code runs if you are unchecking the button
             // Uncheck both yes and no
-            newState[e] = false
+            noState[e] = false
             yesState[e] = false
-            var indexf = yesResults1.indexOf(f)
-            yesResults1.splice(indexf, 1)
+            yesArray[e] = 0
         }
-        setFirstNo(newState)
+        setFirstNo(noState)
         setFirstYes(yesState)
     }
 
-    function choosingYesOne(e, i) {
+    function choosingYesOne(e) {
         // Check if previous no is checked. If it is checked, you can't select Yes
         if (firstNo[e - 1] === false) {
             // Value is not in the yes array so we need to add it in
-            if (!yesResults1.includes(e)) {
-                setYesResults1(yesResults1.concat(e))
+            if (yesArray[e] === 0) {
+                yesArray[e] = e
             } else {
-                // Value is in the yes array, this means that we are unchecking the yes and need to remove it
-                var index = yesResults1.indexOf(e)
-                yesResults1.splice(index, 1)
-            } 
+                // Value is in the yes array, this means that we are unchecking it and need to remove it
+                yesArray[e] = 0
+            }
             var yesState = firstYes
-            var newState = firstNo
+            var noState = firstNo
             // This code runs if the yes button was checked
-            if (yesState[e] == true) {
+            if (yesState[e] === true) {
                 // Uncheck the yes button
                 yesState[e] = false
             } else {
                 // This code runs if the yes button was unchecked
                 // Uncheck the no button
-                newState[e] = false
+                noState[e] = false
                 // Check the yes button
                 yesState[e] = true
             }
             setFirstYes(yesState)
-            setFirstNo(newState)
+            setFirstNo(noState)
         }
     }
     
@@ -146,10 +127,10 @@ const Experiment = () => {
                                     $1
                                 </div>
                                 <div className="col">
-                                    <input type="radio" onClick={() => {choosingYesOne(1, 0.1)}} checked={firstYes[1]} name="yes_no_1"></input>
+                                    <input type="radio" onClick={() => {choosingYesOne(1)}} checked={firstYes[1]} name="yes_no_1"></input>
                                 </div>
                                 <div className="col">
-                                    <input type="radio" onClick={() => choosingNoOne(1, 0.1)} checked={firstNo[1]} name="yes_no_1"></input>
+                                    <input type="radio" onClick={() => choosingNoOne(1)} checked={firstNo[1]} name="yes_no_1"></input>
                                 </div>
                             </div>
                             <div className="row">
@@ -157,10 +138,10 @@ const Experiment = () => {
                                     $2
                                 </div>
                                 <div className="col">
-                                    <input type="radio" onClick={() => {choosingYesOne(2, 0.2)}} checked={firstYes[2]} name="yes_no_2"></input>
+                                    <input type="radio" onClick={() => {choosingYesOne(2)}} checked={firstYes[2]} name="yes_no_2"></input>
                                 </div>
                                 <div className="col">
-                                    <input type="radio" onClick={() => choosingNoOne(2, 0.2)} checked={firstNo[2]} name="yes_no_2"></input>
+                                    <input type="radio" onClick={() => choosingNoOne(2)} checked={firstNo[2]} name="yes_no_2"></input>
                                 </div>
                             </div>
                             <div className="row">
@@ -168,10 +149,10 @@ const Experiment = () => {
                                     $3
                                 </div>
                                 <div className="col">
-                                    <input type="radio" onClick={() => choosingYesOne(3, 31)} checked={firstYes[3]} name="yes_no_3"></input>
+                                    <input type="radio" onClick={() => choosingYesOne(3)} checked={firstYes[3]} name="yes_no_3"></input>
                                 </div>
                                 <div className="col">
-                                    <input type="radio" onClick={() => choosingNoOne(3, 31)} checked={firstNo[3]} name="yes_no_3"></input>
+                                    <input type="radio" onClick={() => choosingNoOne(3)} checked={firstNo[3]} name="yes_no_3"></input>
                                 </div>
                             </div>
                             {/* Get the highest number from array and pass that on to next value */}
@@ -197,7 +178,7 @@ const Experiment = () => {
                 </div>
             }
             {/* Needs fixing */}
-            <button onClick={() => console.log(yesResults1, firstYes, firstNo)}>hello</button>
+            <button onClick={() => console.log(yesArray, firstYes, firstNo)}>hello</button>
             {(counter + 1) < images.length ? <button onClick={() => {
                 if ((counter + 1) < images.length) {
                     setTimeLeft(time_limit)
