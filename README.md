@@ -1,6 +1,6 @@
 # SleepySurvey
 
-Worked 11 hours so far
+Worked 13 hours so far
 
 Decent UI
 Center Text / Images
@@ -20,4 +20,4 @@ Back button issue
 Since the user decline $5 in the previous section does the counter really need to go all the way up to 5?
 Do i need to go all the way up to $5?
 
-If second choice is .00 then third choice will be 30
+Need to unlock firebase

@@ -4,7 +4,7 @@ import './Experiment.css';
 
 let yesArray = [null, null, null, null, null, null, null, null, null, null, null]
 
-var bidPrices = []
+var bidPrices = {}
 
 const Experiment = () => {
     const time_limit = 5
@@ -181,7 +181,6 @@ const Experiment = () => {
             
             // Add first and second choice together, convert to float and add to JSON
             bidPrices[(images[counter].split('/')[3]).split('.')[0]] = parseFloat((secondChoice + max).toFixed(2))
-            console.log(bidPrices)
             yesArray = [null, null, null, null, null, null, null, null, null, null, null]
             setFirstChoice(null)
             setSecondChoice(null)
@@ -190,27 +189,30 @@ const Experiment = () => {
             setTimeLeft(time_limit)
             setCounter(counter + 1)
         } else {
-            history.push({pathname: '/end', data: {id: location.data.id, hoursAgo: location.data.hoursAgo, hungerLevel: location.data.hungerLevel, bidPrices: bidPrices}})
+            var jsonBid =   JSON.stringify(bidPrices)
+            console.log(jsonBid)
+            history.push({pathname: '/end', data: {id: location.data.id, hoursAgo: location.data.hoursAgo, hungerLevel: location.data.hungerLevel, bidPrices: jsonBid}})
         }
     }
     
     return(
-        <div>
+        <div style={{fontSize: 20}}>
             {
                 timeLeft > 0 ? 
-                <div>
+                <div style={{textAlign: "center"}}>
                     The image below will be shown for 60 seconds. After which, you will automatically process to answer the questions.
                     <br></br>
-                    {timeLeft}  
-                    <br></br>
                     <img style={{height: 500, width: 500}} src={images[counter]}/>
+                    <br></br>
+                    {timeLeft} seconds 
                 </div> : 
                 <div>
                     {
                         !firstChoice ? 
-                        <div>
+                        <div style={{textAlign: "center"}}>
                             How much do you think the person from the other group is willing to pay for this item? {(images[counter].split('/')[3]).split('.')[0]}
                             <br></br>
+                            <div style={{marginLeft: "25%"}}>
                             <div className="row">
                                 <div className="col">
                                     Price
@@ -332,15 +334,17 @@ const Experiment = () => {
                                     <input type="radio" onClick={() => choosingNoOne(10)} checked={yesArray[10] === 0} name="yes_no_110"></input>
                                 </div>
                             </div>
+                            </div>
                             <button onClick={() => moveToSecondLevel()}>Next</button>
                             {/* Get the highest number from array and pass that on to next value */}
                         </div> :
                         <div>
                             {
                                 !secondChoice ? 
-                                <div>
+                                <div style={{textAlign: "center"}}>
                                     How much do you think the person from the other group is willing to pay for this item? {(images[counter].split('/')[3]).split('.')[0]}
                                     <br></br>
+                                    <div style={{marginLeft: "25%"}}> 
                                     <div className="row">
                                         <div className="col">
                                             Price
@@ -407,11 +411,13 @@ const Experiment = () => {
                                             <input type="radio" onClick={() => choosingNoTwo(5)} checked={yesArray[5] === 0} name="yes_no_25"></input>
                                         </div>
                                     </div>
+                                    </div>
                                     <button onClick={() => moveToThirdLevel()}>Next</button>
                                 </div> :
-                                <div>
+                                <div style={{textAlign: "center"}}>
                                     How much do you think the person from the other group is willing to pay for this item? {(images[counter].split('/')[3]).split('.')[0]}
                                     <br></br>
+                                    <div style={{marginLeft: "25%"}}>
                                     <div className="row">
                                         <div className="col">
                                             Price
@@ -424,9 +430,15 @@ const Experiment = () => {
                                         </div>
                                     </div>
                                     <div className="row">
-                                        <div className="col">
-                                            ${secondChoice}0
-                                        </div>
+                                        {
+                                            secondChoice % 1 === 0 ?
+                                            <div className="col">
+                                                ${secondChoice}.00
+                                            </div> :
+                                            <div className="col">
+                                                ${secondChoice}0
+                                            </div>
+                                        }
                                         <div className="col">
                                             <input type="radio" onClick={() => choosingYesThree(1, 0.001)} checked={yesArray[1] > 0} name="yes_no_31"></input>
                                         </div>
@@ -435,9 +447,15 @@ const Experiment = () => {
                                         </div>
                                     </div>
                                     <div className="row">
-                                        <div className="col">
-                                            ${secondChoice}5
-                                        </div>
+                                        {
+                                            secondChoice % 1 === 0 ?
+                                            <div className="col">
+                                                ${secondChoice}.05
+                                            </div> :
+                                            <div className="col">
+                                                ${secondChoice}0
+                                            </div>
+                                        }
                                         <div className="col">
                                             <input type="radio" onClick={() => choosingYesThree(2, 0.05)} checked={yesArray[2] > 0} name="yes_no_32"></input>
                                         </div>
@@ -466,6 +484,7 @@ const Experiment = () => {
                                         <div className="col">
                                             <input type="radio" onClick={() => choosingNoTwo(4)} checked={yesArray[4] === 0} name="yes_no_34"></input>
                                         </div>
+                                    </div>
                                     </div>
                                     <button onClick={() => addToJson()}>Next</button>
                                 </div>

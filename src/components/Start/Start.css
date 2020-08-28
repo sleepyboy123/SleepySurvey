@@ -1,0 +1,18 @@
+.heading {
+    text-align: center;
+}
+
+.start_container {
+    width: 25%;
+    font-size: 20px;
+    margin: auto;
+}
+
+.input {
+    margin-left: 20px;
+}
+
+.next {
+    width: 20%;
+    margin: auto;
+}

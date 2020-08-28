@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useHistory, useLocation } from "react-router";
 import './Instruction.css';
 
+import instructions from '../../pictures/Instruction.PNG'
+
 const Instruction = () => {
     const history = useHistory();
     const location = useLocation();
@@ -25,8 +27,12 @@ const Instruction = () => {
 
     return(
         <div>
-            Instructions
-            {timeLeft}
+            <h1 className={'heading'}>Instructions</h1>
+            <br></br>
+            <div className={'container'}>
+                <img src={instructions} />
+                <div className={'time'}>Time Remaining: {timeLeft}</div>
+            </div>
         </div>
     )
 }
