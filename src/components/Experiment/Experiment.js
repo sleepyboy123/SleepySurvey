@@ -31,12 +31,6 @@ const Experiment = () => {
     // Import all images from folder
     const images = importAll(require.context('../../images', false, /\.(png|jpe?g|svg)$/))
 
-    // var results = {
-    //     id: location.data.id,
-    //     hoursAgo: location.data.hoursAgo,
-    //     hungerLevel: location.data.hungerLevel,
-    // }
-
     function choosingNoOne(e) {
         // This code runs if you are checking the button
         if (yesArray[e] !== 0 || yesArray[e] === null) {
@@ -69,13 +63,12 @@ const Experiment = () => {
         var tempArray = yesArray.slice(1, 11)
         var sum = 0
         var max = 0
-        if (tempArray.includes(null)){
-            alert("Please select all the options")
-        } 
         for (var i = 0; i < tempArray.length; i++) {
             sum += tempArray[i]
         }
-        if (sum === 0) {
+        if (tempArray.includes(null)){
+            alert("Please select all the options")
+        } else if (sum === 0) {
             alert("Please choose at least one yes")
         } else {
             for (var a = 0; a < tempArray.length; a++) {
@@ -121,13 +114,12 @@ const Experiment = () => {
         var tempArray = yesArray.slice(1, 6)
         var sum = 0
         var max = 0
-        if (tempArray.includes(null)){
-            alert("Please select all the options")
-        } 
         for (var i = 0; i < tempArray.length; i++) {
             sum += tempArray[i]
         }
-        if (sum === 0) {
+        if (tempArray.includes(null)){
+            alert("Please select all the options")
+        } else if (sum === 0) {
             alert("Please choose at least one yes")
         } else {
             for (var a = 0; a < tempArray.length; a++) {
@@ -173,13 +165,12 @@ const Experiment = () => {
         var tempArray = yesArray.slice(1, 5)
         var sum = 0
         var max = 0
-        if (tempArray.includes(null)){
-            alert("Please select all the options")
-        } 
         for (var i = 0; i < tempArray.length; i++) {
             sum += tempArray[i]
         }
-        if (sum === 0) {
+        if (tempArray.includes(null)){
+            alert("Please select all the options")
+        } else if (sum === 0) {
             alert("Please choose at least one yes")
         } else {
             for (var a = 0; a < tempArray.length; a++) {
