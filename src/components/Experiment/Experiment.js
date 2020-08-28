@@ -4,6 +4,8 @@ import './Experiment.css';
 
 let yesArray = [null, null, null, null, null, null, null, null, null, null, null]
 
+var bidPrices = []
+
 const Experiment = () => {
     const time_limit = 5
     const location = useLocation();
@@ -29,11 +31,11 @@ const Experiment = () => {
     // Import all images from folder
     const images = importAll(require.context('../../images', false, /\.(png|jpe?g|svg)$/))
 
-    var results = {
-        id: location.data.id,
-        hoursAgo: location.data.hoursAgo,
-        hungerLevel: location.data.hungerLevel
-    }
+    // var results = {
+    //     id: location.data.id,
+    //     hoursAgo: location.data.hoursAgo,
+    //     hungerLevel: location.data.hungerLevel,
+    // }
 
     function choosingNoOne(e) {
         // This code runs if you are checking the button
@@ -185,10 +187,10 @@ const Experiment = () => {
                     max = tempArray[a]
                 }
             }
+            
             // Add first and second choice together, convert to float and add to JSON
-            var name = (images[counter].split('/')[3]).split('.')[0]
-            results = {...results, [name]: parseFloat((secondChoice + max).toFixed(2))}
-            console.log(results)
+            bidPrices[(images[counter].split('/')[3]).split('.')[0]] = parseFloat((secondChoice + max).toFixed(2))
+            console.log(bidPrices)
             yesArray = [null, null, null, null, null, null, null, null, null, null, null]
             setFirstChoice(null)
             setSecondChoice(null)
@@ -197,7 +199,7 @@ const Experiment = () => {
             setTimeLeft(time_limit)
             setCounter(counter + 1)
         } else {
-            history.push({pathname: '/end', results})
+            history.push({pathname: '/end', data: {id: location.data.id, hoursAgo: location.data.hoursAgo, hungerLevel: location.data.hungerLevel, bidPrices: bidPrices}})
         }
     }
     

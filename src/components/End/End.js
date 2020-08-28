@@ -7,17 +7,12 @@ const End = () => {
     const location = useLocation();
     const [endHungerLevel, setEndHungerLevel] = useState();
 
-    var data = {
-        
-    }
-
     function sendToFireBase() {
-        data = { ... location.results, endHungerLevel: endHungerLevel }
+        var data = { id: location.data.id, hoursAgo: location.data.hoursAgo, hungerLevel: location.data.hungerLevel, bidPrices: location.data.bidPrices, endHungerLevel: endHungerLevel }
         console.log(data)
-        history.push({pathname: "/Pay"})
+        // Link to firebase
+        history.push({pathname: "/pay"})
     }
-
-    
 
     return(
         <div>
