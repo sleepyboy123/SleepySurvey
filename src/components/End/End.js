@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useHistory, useLocation } from "react-router";
 
 import firebase from '../Firestore';
@@ -12,8 +12,14 @@ const End = () => {
     const location = useLocation();
     const [endHungerLevel, setEndHungerLevel] = useState();
     const [state, setState] = useState(false)
+    const auth = firebase.auth();
 
-    
+    // Similar to component did mount
+    useEffect(() => {
+        auth.signInWithEmailAndPassword('sleepysurvey123@gmail.com', 'Asdasd123%').then(cred => {
+
+        })
+    })
 
     function sendToFireBase() {
         var data = { id: location.data.id, hoursAgo: location.data.hoursAgo, hungerLevel: location.data.hungerLevel, bidPrices: location.data.bidPrices, endHungerLevel: endHungerLevel }
@@ -27,8 +33,7 @@ const End = () => {
             bidPrices: location.data.bidPrices,
             endHungerLevel: endHungerLevel
         })
-        
-        history.push({pathname: "/pay"})
+        history.push({pathname: "/pay", data: location.data.bidPrices})
     }
 
     return(
@@ -48,9 +53,6 @@ const End = () => {
                     </div>
                 }
             </div>
-
-
-            
     )
 }
 

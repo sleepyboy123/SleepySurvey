@@ -6,7 +6,8 @@ const Wait = () => {
     const location = useLocation();
     return(
         <div>
-           Payout...
+            {location.data}
+            Payout...
            
         </div>
     )
