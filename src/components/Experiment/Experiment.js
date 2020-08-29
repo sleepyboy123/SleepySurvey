@@ -178,20 +178,19 @@ const Experiment = () => {
                     max = tempArray[a]
                 }
             }
-            
             // Add first and second choice together, convert to float and add to JSON
             bidPrices[(images[counter].split('/')[3]).split('.')[0]] = parseFloat((secondChoice + max).toFixed(2))
             yesArray = [null, null, null, null, null, null, null, null, null, null, null]
             setFirstChoice(null)
             setSecondChoice(null)
-        }
-        if ((counter + 1) < images.length) {
-            setTimeLeft(time_limit)
-            setCounter(counter + 1)
-        } else {
-            var jsonBid =   JSON.stringify(bidPrices)
-            console.log(jsonBid)
-            history.push({pathname: '/end', data: {id: location.data.id, hoursAgo: location.data.hoursAgo, hungerLevel: location.data.hungerLevel, bidPrices: jsonBid}})
+            if ((counter + 1) < images.length) {
+                setTimeLeft(time_limit)
+                setCounter(counter + 1)
+            } else {
+                var jsonBid =   JSON.stringify(bidPrices)
+                console.log(jsonBid)
+                history.push({pathname: '/end', data: {id: location.data.id, hoursAgo: location.data.hoursAgo, hungerLevel: location.data.hungerLevel, bidPrices: jsonBid}})
+            }
         }
     }
     
@@ -335,7 +334,7 @@ const Experiment = () => {
                                 </div>
                             </div>
                             </div>
-                            <button onClick={() => moveToSecondLevel()}>Next</button>
+                            <button style={{fontSize: 20}} onClick={() => moveToSecondLevel()}>Next</button>
                             {/* Get the highest number from array and pass that on to next value */}
                         </div> :
                         <div>
@@ -412,7 +411,7 @@ const Experiment = () => {
                                         </div>
                                     </div>
                                     </div>
-                                    <button onClick={() => moveToThirdLevel()}>Next</button>
+                                    <button style={{fontSize: 20}} onClick={() => moveToThirdLevel()}>Next</button>
                                 </div> :
                                 <div style={{textAlign: "center"}}>
                                     How much do you think the person from the other group is willing to pay for this item? {(images[counter].split('/')[3]).split('.')[0]}
@@ -453,7 +452,7 @@ const Experiment = () => {
                                                 ${secondChoice}.05
                                             </div> :
                                             <div className="col">
-                                                ${secondChoice}0
+                                                ${secondChoice}5
                                             </div>
                                         }
                                         <div className="col">
@@ -486,7 +485,7 @@ const Experiment = () => {
                                         </div>
                                     </div>
                                     </div>
-                                    <button onClick={() => addToJson()}>Next</button>
+                                    <button style={{fontSize: 20}} onClick={() => addToJson()}>Next</button>
                                 </div>
                             }
                         </div>

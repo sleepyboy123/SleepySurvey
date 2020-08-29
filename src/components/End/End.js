@@ -33,16 +33,17 @@ const End = () => {
             bidPrices: location.data.bidPrices,
             endHungerLevel: endHungerLevel
         })
-        history.push({pathname: "/pay", data: location.data.bidPrices})
+        history.push({pathname: "/pay", data: location.data.bidPrices, id: location.data.id})
     }
 
-    return(
+    return (
             <div>
                 { state ?
                     <div style={{textAlign: "center"}}>
                         Rate on a scale of 1 - 10, As of now, describe your level of satiety (Fullness)?
                         <input style={{marginLeft: 10}} type="number" value={endHungerLevel} min="1" max="10" onChange={e => setEndHungerLevel(e.target.value)}/>
-                        { endHungerLevel ? <button onClick={() => {sendToFireBase()}}>Next</button> : null }
+                        <br></br>
+                        { endHungerLevel ? <button style={{fontSize: 20}} onClick={() => {sendToFireBase()}}>Next</button> : null }
                     </div> :
                     <div>
                         <h1 style={{textAlign: "center"}}>End of Experiment</h1>
