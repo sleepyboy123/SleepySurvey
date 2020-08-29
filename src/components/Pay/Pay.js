@@ -29,10 +29,10 @@ const Pay = () => {
     }
 
     return (
-        <div style={{fontSize: 20}}>
+        <div style={{fontSize: 2}}>
             <h1 style={{textAlign: "center"}}>Pay-out</h1>  
             <br></br>
-            <div style={{textAlign: "center"}}>
+            <div style={{fontSize :25, textAlign: "center"}}>
             Participation ID: {location.id}
             <br></br>
             {
