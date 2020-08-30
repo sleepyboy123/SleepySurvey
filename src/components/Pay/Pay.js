@@ -36,7 +36,7 @@ const Pay = () => {
             Participation ID: {location.id}
             <br></br>
             {
-                pay === false ? <button style={{fontSize: 20}} onClick={() => {calculatePay()}}>Show Pay</button> : <div>Your payout is ${20 - globalsum}</div>
+                pay === false ? <button style={{fontSize: 20}} onClick={() => {calculatePay()}}>Show Pay</button> : <div>Your payout is ${parseFloat((20 - globalsum).toFixed(2))}</div>
             }
             <br></br>
             <img alt="pay" src={paypic}></img>
