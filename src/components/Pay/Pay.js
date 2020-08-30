@@ -20,7 +20,7 @@ const Pay = () => {
     function calculatePay() {
         for (const [key1, value1] of chosenEntries) {
             for (const [key2, value2] of bidEntries) {
-                if (key1 === key2 && value1 === value2) {
+                if (key1 === key2 && value1 <= value2) {
                     globalsum += value1
                 }
             }
