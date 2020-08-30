@@ -7,7 +7,7 @@ import instructions from '../../pictures/Instruction.PNG'
 const Instruction = () => {
     const history = useHistory();
     const location = useLocation();
-    const [timeLeft, setTimeLeft] = useState(300)
+    const [timeLeft, setTimeLeft] = useState(1)
     // Effect to change page
     useEffect(() => {
         const timer =  setTimeout(() => {
