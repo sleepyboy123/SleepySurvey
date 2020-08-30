@@ -12,7 +12,7 @@ const Instruction = () => {
     useEffect(() => {
         const timer =  setTimeout(() => {
             history.push({pathname: "/start", id: location.id});
-        }, 5000);
+        }, timeLeft * 1000);
         return () => clearTimeout(timer);
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
