@@ -7,7 +7,7 @@ let yesArray = [null, null, null, null, null, null, null, null, null, null, null
 var bidPrices = {}
 
 const Experiment = () => {
-    const time_limit = 5
+    const time_limit = 60
     const location = useLocation();
     const history = useHistory();
     const [timeLeft, setTimeLeft] = useState(time_limit)

@@ -7,12 +7,12 @@ import instructions from '../../pictures/Instruction.PNG'
 const Instruction = () => {
     const history = useHistory();
     const location = useLocation();
-    const [timeLeft, setTimeLeft] = useState(5)
+    const [timeLeft, setTimeLeft] = useState(300)
     // Effect to change page
     useEffect(() => {
         const timer =  setTimeout(() => {
             history.push({pathname: "/start", id: location.id});
-        }, 5000);
+        }, timeLeft *  1000);
         return () => clearTimeout(timer);
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
