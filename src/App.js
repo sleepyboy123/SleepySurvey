@@ -15,7 +15,7 @@ function App() {
   return (
     <Router>
       <Route path="/" exact component={PartID} />
-      <Route path="/instruction" exact component={Instruction} />
+      <Route path="/Instruction" exact component={Instruction} />
       <Route path="/Start" exact component={Start} />
       <Route path="/Wait" exact component={Wait} />
       <Route path="/Experiment" exact component={Experiment} />

@@ -39,7 +39,7 @@ const Pay = () => {
                 pay === false ? <button style={{fontSize: 20}} onClick={() => {calculatePay()}}>Show Pay</button> : <div>Your payout is ${20 - globalsum}</div>
             }
             <br></br>
-            <img src={paypic}></img>
+            <img alt="pay" src={paypic}></img>
             </div>
         </div>
     )

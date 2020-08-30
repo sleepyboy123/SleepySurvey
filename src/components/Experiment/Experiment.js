@@ -201,7 +201,7 @@ const Experiment = () => {
                 <div style={{textAlign: "center"}}>
                     The image below will be shown for 60 seconds. After which, you will automatically process to answer the questions.
                     <br></br>
-                    <img style={{height: 500, width: 500}} src={images[counter]}/>
+                    <img style={{height: 500, width: 500}} alt="bidImage" src={images[counter]}/>
                     <br></br>
                     {timeLeft} seconds 
                 </div> : 

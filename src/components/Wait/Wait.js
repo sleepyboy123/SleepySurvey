@@ -11,7 +11,7 @@ const Wait = () => {
         <div>
            <h1 style={{textAlign: "center"}}>Start of Experiment</h1>
            <div style={{textAlign: "center"}}>
-           <img src={wait}></img>
+           <img src={wait} alt="wait"></img>
            </div>
            <button style={{display: "grid", margin: "auto", fontSize: 20}} onClick={() => {history.push({pathname: "/experiment", data: {id: location.data.id, hoursAgo: location.data.hoursAgo, hungerLevel: location.data.hungerLevel}})}}>Next</button>
            

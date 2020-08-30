@@ -48,7 +48,7 @@ const End = () => {
                     <div>
                         <h1 style={{textAlign: "center"}}>End of Experiment</h1>
                         <div style={{textAlign: "center"}}>
-                        <img src={wait2}></img>
+                        <img alt="wait2" src={wait2}></img>
                         </div>
                         <button style={{display: "grid", margin: "auto", fontSize: 20}} onClick={() => setState(true)}>Next</button>
                     </div>

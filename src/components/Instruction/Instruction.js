@@ -14,6 +14,7 @@ const Instruction = () => {
             history.push({pathname: "/start", id: location.id});
         }, 5000);
         return () => clearTimeout(timer);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
     // Effect to display countdown
     useEffect(() => {
@@ -30,7 +31,7 @@ const Instruction = () => {
             <h1 className={'heading'}>Instructions</h1>
             <br></br>
             <div className={'container'}>
-                <img src={instructions} />
+                <img alt="instructions" src={instructions} />
                 <div className={'time'}>Time Remaining: {timeLeft}</div>
             </div>
         </div>
