@@ -9,7 +9,7 @@ This is a comprehensive guide on how to set up the SleepySurvey website on a loc
 8) On your test machines, open the browser and go to <IP Address>:3000 (172.16.0.126:3000)
 
 The results are stored on firebase. 
-1) Login to gmail using sleepysurvey123@gmail.command and Asdasd123%
+1) Login to gmail using sleepysurvey123@gmail.com and Asdasd123%
 2) Go to https://firebase.google.com/
 3) Click on `Go to console` at the top right hand corner (Make sure you are in the sleepysurvey gmail)
 4) Click on the sleepysurvey project
