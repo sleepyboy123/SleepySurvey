@@ -1,9 +1,5 @@
-.heading {
-    text-align: center;
-}
-
-.container {
-    width: 50%;
-    margin: auto;
-    font-size: 20px;
+.instruction-next {
+    display: block;
+    width: 10%;
+    margin: 0 auto;
 }

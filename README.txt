@@ -22,3 +22,10 @@ This is a guide to set the random values that will be used for the pay feature
 3) Follow the format in the document to add / edit the values
 It follows a key value pair e.g "Snickers": 3.45,
 It is important to note that the key ("Snickers") has to have the exact same name as the PNG file in the images section
+
+Notes
+
+You have to manually make sure that each person in the session has a different id... You can do this by setting a different letter in front of each of their id. 'a1234', 'b1234'
+Can only check against those in the existing database
+
+7 Hour
