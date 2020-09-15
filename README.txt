@@ -25,7 +25,6 @@ It is important to note that the key ("Snickers") has to have the exact same nam
 
 Notes
 
-You have to manually make sure that each person in the session has a different id... You can do this by setting a different letter in front of each of their id. 'a1234', 'b1234'
-Can only check against those in the existing database
+Try not to put weird characters in the picture name... don't put . / 
 
 7 Hour

@@ -168,7 +168,7 @@ const Experiment = () => {
                 ready === 0 ? 
                 <div style={{textAlign: "center"}}>
                     The image below is a {(images[counter].split('/')[3]).split('.')[0]}. The experimenters will be passing around this item for you to see.
-                    Please process when you are ready with your decision
+                    Please proceed when you are ready with your decision
                     <br></br>
                     <img style={{height: 500, width: 500}} alt="bidImage" src={images[counter]}/>
                     <br></br>

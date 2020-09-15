@@ -47,15 +47,16 @@ const End = () => {
         for (const [key1, value1] of bidEntries) {
             for (const [key2, value2] of chosenEntries) {
                 if (key1 === key2) {
-                    setChoice(value1)
                     setItem(key1)
                     setPrice(value2)
                     if (value1 >= value2) {
                         // Take Item
                         setPayout(key1)
+                        setChoice('Take the item')
                     } else {
                         // Get Money
                         setPayout(value2)
+                        setChoice('Take the money')
                     }
                 }
             }
@@ -75,7 +76,7 @@ const End = () => {
             </div> 
             :
             <div style={{fontSize: 20}}>
-                <h1 style={{textAlign: "center"}}>Pay-out</h1>
+                <h1 style={{textAlign: "center"}}>Payout</h1>
                 <br></br>  
                 <div style={{fontSize: 25, textAlign: "center"}}>
                     {location.data.id}
