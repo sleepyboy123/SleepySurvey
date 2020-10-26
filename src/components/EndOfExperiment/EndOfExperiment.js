@@ -47,7 +47,7 @@ const EndOfExperiment = () => {
 
         })
         calculatePay()
-    }, [])
+    })
 
     function sendToFireBase() {
         // Link to firebase

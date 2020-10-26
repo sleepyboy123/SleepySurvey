@@ -41,7 +41,7 @@ const ActualHunger = () => {
         }).catch(function(error) {
             console.log("Error getting document: ", error)
         })  
-    }, [])
+    })
 
     return (
         <div>
