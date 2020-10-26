@@ -27,4 +27,18 @@ Notes
 
 Try not to put weird characters in the picture name... don't put . / 
 
-7 Hour
+Duplicate to a second website and database
+
+Select a random user "secondHungerLevel" based on id
+
+id is going to be 1001 to 1020
+
+Alert them to ask them if they are sure that this the right hunger level they have chosen
+
+Same multiple choice as part 1, just change question...
+
+Payment method for part 2
+
+6 Hour
+
+

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useLocation, useHistory } from "react-router";
-import './Experiment.css';
+import './ExperimentTwo.css';
 
 var bidPrices = {}
 
@@ -157,7 +157,17 @@ const Experiment = () => {
         } else {
             var jsonBid =   JSON.stringify(bidPrices)
             console.log(jsonBid)
-            history.push({pathname: '/EndOne', data: {id: location.data.id, hoursAgo: location.data.hoursAgo, hungerLevel: location.data.hungerLevel, secondHungerLevel: location.data.secondHungerLevel, bidPrices: jsonBid}})
+            history.push({pathname: '/EndTwo', 
+                data: {
+                    id: location.data.id, 
+                    hoursAgo: location.data.hoursAgo, 
+                    hungerLevel: location.data.hungerLevel, 
+                    secondHungerLevel: location.data.secondHungerLevel, 
+                    bidPrices: location.data.bidPrices, 
+                    hungerLevelGuess: location.data.hungerLevelGuess,
+                    bidPricesGuess: jsonBid
+                }
+            })
         }
     }
 
@@ -177,7 +187,7 @@ const Experiment = () => {
                     {
                         firstChoice === null ?
                         <div style={{textAlign: "center"}}>
-                            For each of the rows, choose which option you prefer? ({(images[counter].split('/')[3]).split('.')[0]})
+                            For each of the rows, which options do you think the randomly assigned participant chose? ({(images[counter].split('/')[3]).split('.')[0]})
                             <br></br>
                             <div style={{marginLeft: "30%"}}>
                                 <div className="row">
@@ -282,7 +292,7 @@ const Experiment = () => {
                         </div> 
                         :
                         <div style={{textAlign: "center"}}>
-                        For each of the rows, choose which option you prefer? ({(images[counter].split('/')[3]).split('.')[0]})
+                        For each of the rows, which options do you think the randomly assigned participant chose? ({(images[counter].split('/')[3]).split('.')[0]})
                         <br></br>
                         <div style={{marginLeft: "30%"}}>
                             <div className="row">
