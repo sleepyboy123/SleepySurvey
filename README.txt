@@ -39,6 +39,6 @@ Same multiple choice as part 1, just change question...
 
 Payment method for part 2
 
-6 Hour
+5 Hour
 
 

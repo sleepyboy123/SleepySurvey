@@ -10,7 +10,7 @@ const randomItemTwo = "50g Snickers Bar"
 // Value from 0 -> 98 with an interval of 0.1
 const KTwo = 45.3
 
-const randomItemThree = "50g Snickers Bar"
+const randomItemThree = "Bag of 6 apples"
 
 const KThree = 27.1
 
