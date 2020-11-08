@@ -9,7 +9,7 @@ const EndThree = () => {
 
     return(
         <div>
-            <h1 style={{textAlign: "center", fontSize: 60}}>End of Part 3</h1>
+            <h1 style={{textAlign: "center", fontSize: 60, marginTop: "10%"}}>End of Part 3</h1>
             <button className={'end-two-next'} onClick={() => {history.push({pathname: "/EndOfExperiment", 
                 data: {
                     id: location.data.id, 

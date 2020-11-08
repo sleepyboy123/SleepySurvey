@@ -149,12 +149,12 @@ const EndOfExperiment = () => {
     return(
         <div>
             <h1 style={{textAlign: "center", fontSize: 60}}>End of Experiment</h1>
-            <ul>
+            <ul style={{fontSize: 25}}>
                 <li>Congratulations on completing the experiment!</li>
                 <li>The following is the breakdown of your payout for the 3 different parts of this experiment</li>
                 <li>Your total payout will be shown on the next page. Please proceed to the next page once you have finished going through the breakdown of your payout.</li>
             </ul>
-            <div class="flex-container">
+            <div class="flex-container" style={{fontSize: 20, lineHeight: 1.6}}>
                 <div>
                     <strong><u>Part 1</u></strong>
                     <br></br>
@@ -164,7 +164,7 @@ const EndOfExperiment = () => {
                     <br></br>
                     Your chosen option at the randomised row: {choice}
                     <br></br>
-                    Your payout: {payout}
+                    Your payout: <strong>${payout}</strong>
                 </div>
                 <div>
                     <strong><u>Part 2</u></strong>
@@ -179,7 +179,7 @@ const EndOfExperiment = () => {
                     <br></br>
                     Randomised Value between 1 to 81 (K): {K}
                     <br></br>
-                    Your Payout: {P2R1Pay}
+                    Your Payout: <strong>${P2R1Pay}</strong>
                     <br></br>
                     <u>Round 2</u>
                     <br></br>
@@ -193,7 +193,7 @@ const EndOfExperiment = () => {
                     <br></br>
                     Randomised value between 0 to 98 (K): {KTwo}
                     <br></br>
-                    Your payout: {P2R2Pay}
+                    Your payout: <strong>${P2R2Pay}</strong>
                 </div>
                 <div>
                     <strong><u>Part 3</u></strong>
@@ -208,7 +208,7 @@ const EndOfExperiment = () => {
                     <br></br>
                     Randomised value between 0 to 98 (K): {KThree}
                     <br></br>
-                    Your payout: {P3Pay}
+                    Your payout: <strong>${P3Pay}</strong>
                 </div>  
             </div>
             {/* Need to run 2 functions when history.push */}

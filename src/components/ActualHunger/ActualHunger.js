@@ -41,10 +41,10 @@ const ActualHunger = () => {
         }).catch(function(error) {
             console.log("Error getting document: ", error)
         })  
-    })
+    }, [auth])
 
     return (
-        <div>
+        <div style={{marginTop: "10%"}}>
             <h2 style={{textAlign: "center"}}><u>Part 3</u></h2>
             <h3 style={{textAlign: "center"}}>
                 The actual level of (Fullness) the randomly assigned participant had chosen in Q3 of the "satiety-level questionnaire" is:
@@ -53,7 +53,7 @@ const ActualHunger = () => {
                 (1 being the least satiated (i.e. most hungry) and 10 being the most satiated (i.e. least hungry))
             </h3>
             <h3 style={{textAlign: "center"}}>
-                { randomHungerLevel === '' ? <div>Loading...</div> : <div>{randomHungerLevel}</div>}
+                { randomHungerLevel === '' ? <div>Loading...</div> : <div style={{fontSize: 40, color: "red"}}>{randomHungerLevel}</div>}
             </h3>
             <br></br>
             <h3 style={{textAlign: "center"}}>
