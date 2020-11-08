@@ -43,7 +43,7 @@ const PartID = () => {
 
     return(
         <div style={{textAlign: "center"}}>
-            Please enter your Participation ID Lalalala
+            Please enter your Participation ID
             <input className={'input'} type="text" value={partID} onChange={e => setPartID(e.target.value)}/>
             { partID.length === 4 ? <button onClick={checkID}>Next</button> : null } 
         </div>
